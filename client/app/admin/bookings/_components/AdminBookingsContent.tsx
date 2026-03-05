@@ -99,6 +99,8 @@ export function AdminBookingsContent() {
         mutationFn: ({ id, status }: { id: string; status: BookingStatus }) =>
             updateBookingStatus(id, status),
         onSuccess: () => {
+            // Close modal after status update
+            setSelectedBooking(null);
             // Admin side invalidations
             queryClient.invalidateQueries({ queryKey: ["adminAllBookings"] });
             queryClient.invalidateQueries({ queryKey: ["adminStats"] });
