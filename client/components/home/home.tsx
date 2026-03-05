@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Hero from "@/components/home/hero";
+import Snowfall from "react-snowfall";
+import Hero from "@/components/home/hero";;
 import HowItWorks from "@/components/home/how-it-works";
 import Services from "@/components/home/services";
 import RemovalsHub from "@/components/home/removals-hub";
@@ -74,6 +75,19 @@ export default function DashboardHome() {
             onMouseMove={handleMouseMove}
             onMouseLeave={() => setHighlighted(new Set())}
         >
+            {/* Snowfall Effect */}
+            <Snowfall
+                color="#10b981"
+                snowflakeCount={50}
+                style={{
+                    position: "fixed",
+                    width: "100vw",
+                    height: "100vh",
+                    zIndex: 50,
+                    pointerEvents: "none",
+                }}
+            />
+
             {/* Full-page grid — fixed, spans entire viewport across all sections */}
             <div className="fixed inset-0 hidden md:grid grid-cols-58 gap-0 pointer-events-none z-0">
                 {gridCells.map((_, idx) => {
@@ -94,6 +108,7 @@ export default function DashboardHome() {
                 })}
             </div>
 
+            
             {/* Mobile grid */}
             <div className="fixed inset-0 grid grid-cols-16 gap-0 md:hidden pointer-events-none z-0">
                 {Array.from({ length: 550 }).map((_, idx) => (
