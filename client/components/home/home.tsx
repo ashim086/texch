@@ -103,13 +103,27 @@ export default function DashboardHome() {
 
             {/* Page sections */}
             <div className="relative z-10">
-                <Hero onLoginClick={handleOpenLogin} onGetQuote={handleGetQuote} />
-                <HowItWorks />
-                <Services />
-                <RemovalsHub />
-                <Testimonials />
-                <FAQ />
-                <Footer />
+                <section id="home">
+                    <Hero onLoginClick={handleOpenLogin} onGetQuote={handleGetQuote} />
+                </section>
+                <section id="how-it-works">
+                    <HowItWorks />
+                </section>
+                <section id="services">
+                    <Services />
+                </section>
+                <section id="about">
+                    <RemovalsHub />
+                </section>
+                <section id="testimonials">
+                    <Testimonials />
+                </section>
+                <section id="faq">
+                    <FAQ />
+                </section>
+                <section id="contact">
+                    <Footer />
+                </section>
             </div>
 
             <LoginDialog

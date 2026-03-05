@@ -18,7 +18,7 @@ import PlacesInput from "@/components/shared/PlacesInput";
 import { reverseGeocode } from "@/lib/googleMaps";
 
 const navLinks = [
-    { label: "Home", href: "#" },
+    { label: "Home", href: "#home" },
     { label: "About us", href: "#about" },
     { label: "Our Services", href: "#services" },
     { label: "Testimonials", href: "#testimonials" },
