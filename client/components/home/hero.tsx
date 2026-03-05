@@ -81,8 +81,8 @@ const Hero = ({ onLoginClick, onGetQuote }: HeroProps) => {
     return (
         <section className="min-h-screen overflow-hidden">
             {/* ─── Navbar ─── */}
-            <nav className="w-full">
-                <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+            <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100/50">
+                <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
                     <a href="/" className="text-2xl font-bold text-gray-900 tracking-tight">
                         <span className="text-emerald-600">N</span>N<span className="text-emerald-600">R</span>
                     </a>
@@ -130,7 +130,7 @@ const Hero = ({ onLoginClick, onGetQuote }: HeroProps) => {
             </nav>
 
             {/* ─── Hero Content ─── */}
-            <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2 px-6 pt-8 lg:pt-12">
+            <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2 px-6 pt-20 lg:pt-24">
                 {/* Left Column */}
                 <div className="flex flex-col justify-center pb-16 lg:pb-24 lg:pr-12">
                     {/* Rating badge */}

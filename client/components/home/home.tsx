@@ -123,22 +123,22 @@ export default function DashboardHome() {
                 <section id="home">
                     <Hero onLoginClick={handleOpenLogin} onGetQuote={handleGetQuote} />
                 </section>
-                <section id="how-it-works">
+                <section id="how-it-works" className="scroll-mt-20">
                     <HowItWorks />
                 </section>
-                <section id="services">
+                <section id="services" className="scroll-mt-20">
                     <Services />
                 </section>
-                <section id="about">
+                <section id="about" className="scroll-mt-20">
                     <RemovalsHub />
                 </section>
-                <section id="testimonials">
+                <section id="testimonials" className="scroll-mt-20">
                     <Testimonials />
                 </section>
-                <section id="faq">
+                <section id="faq" className="scroll-mt-20">
                     <FAQ />
                 </section>
-                <section id="contact">
+                <section id="contact" className="scroll-mt-20">
                     <Footer />
                 </section>
             </div>
