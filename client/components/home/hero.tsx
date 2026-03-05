@@ -92,6 +92,11 @@ const Hero = ({ onLoginClick, onGetQuote }: HeroProps) => {
                             <li key={link.label}>
                                 <a
                                     href={link.href}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        const target = document.querySelector(link.href);
+                                        target?.scrollIntoView({ behavior: "smooth" });
+                                    }}
                                     className="text-sm font-medium text-gray-600 hover:bg-emerald-600 hover:text-white rounded-full px-3 py-1.5 transition"
                                 >
                                     {link.label}

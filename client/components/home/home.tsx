@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Snowfall from "react-snowfall";
+import dynamic from "next/dynamic";
 import Hero from "@/components/home/hero";;
 import HowItWorks from "@/components/home/how-it-works";
 import Services from "@/components/home/services";
@@ -12,6 +12,9 @@ import Footer from "@/components/home/footer";
 import { LoginDialog } from "@/components/shared/LoginDialog";
 import { SignupDialog } from "@/components/shared/SignupDialog";
 import BookingModal from "@/components/booking/bookinModal";
+
+// Dynamic import with SSR disabled - Snowfall uses canvas which doesn't exist on server
+const Snowfall = dynamic(() => import("react-snowfall"), { ssr: false });
 
 const ROWS = 58;
 const COLS = 58;
