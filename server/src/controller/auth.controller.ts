@@ -241,9 +241,16 @@ export const logout = asyncHandler(async (req, res, next) => {
         });
     }
 
-    // Clear cookies
-    res.clearCookie("accessToken");
-    res.clearCookie("refreshToken");
+    // Clear cookies - must use same options as when setting them
+    const isProduction = process.env.NODE_ENV === "production";
+    const cookieOptions = {
+        httpOnly: true,
+        secure: isProduction,
+        sameSite: isProduction ? "none" as const : "lax" as const,
+    };
+
+    res.clearCookie("accessToken", cookieOptions);
+    res.clearCookie("refreshToken", cookieOptions);
 
     successMsG(200, { message: "Logged out successfully" }, res, "Logout successful");
 });
