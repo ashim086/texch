@@ -12,7 +12,6 @@ import Footer from "@/components/home/footer";
 import { LoginDialog } from "@/components/shared/LoginDialog";
 import { SignupDialog } from "@/components/shared/SignupDialog";
 import BookingModal from "@/components/booking/bookinModal";
-
 // Dynamic import with SSR disabled - Snowfall uses canvas which doesn't exist on server
 const Snowfall = dynamic(() => import("react-snowfall"), { ssr: false });
 
