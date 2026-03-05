@@ -1,0 +1,115 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  CUSTOMER
+  ADMIN
+  DRIVER
+}
+
+enum BookingStatus {
+  REQUESTED
+  CONFIRMED
+  ASSIGNED
+  IN_TRANSIT
+  COMPLETED
+  CANCELLED
+}
+
+enum HouseSize {
+  ONE_BHK
+  TWO_BHK
+  THREE_BHK
+  OFFICE
+}
+
+model User {
+  id       Int     @id @default(autoincrement())
+  name     String
+  email    String  @unique
+  password String?
+  phone    String?
+  role     Role    @default(CUSTOMER)
+  avatar   String?
+
+  provider      String         @default("local")
+  refreshTokens RefreshToken[]
+  googleId      String?        @unique
+
+  driver   Driver?
+  bookings Booking[]
+
+  createdAt DateTime @default(now())
+}
+
+model RefreshToken {
+  id         Int      @id @default(autoincrement())
+  token      String   @unique
+  userID     Int
+  user       User     @relation(fields: [userID], references: [id])
+  expiresAt  DateTime
+  creadtedAt DateTime @default(now())
+}
+
+model Driver {
+  id            String  @id @default(uuid())
+  userId        Int     @unique
+  vehicleType   String
+  licenseNumber String  @unique
+  isAvailable   Boolean @default(true)
+  rating        Float   @default(0)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  bookings  Booking[]
+}
+
+model Booking {
+  id String @id @default(uuid())
+
+  userId   Int?
+  driverId String?
+
+  fromAddress String
+  toAddress   String
+  distanceKm  Float
+  moveDate    DateTime
+  houseSize   HouseSize
+  phone       String
+
+  status BookingStatus @default(REQUESTED)
+  price  Float
+
+  user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  driver Driver? @relation(fields: [driverId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Service {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  description String
+  icon        String // Icon name (e.g., "Home", "Building", "Truck")
+  basePrice   Float
+  pricePerKm  Float
+  features    String[] // Array of feature strings
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
