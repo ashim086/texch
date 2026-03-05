@@ -78,7 +78,7 @@ export default function DashboardHome() {
             onMouseLeave={() => setHighlighted(new Set())}
         >
             {/* Snowfall Effect */}
-            <Snowfall
+            {/* <Snowfall
                 color="#10b981"
                 snowflakeCount={50}
                 style={{
@@ -88,7 +88,7 @@ export default function DashboardHome() {
                     zIndex: 50,
                     pointerEvents: "none",
                 }}
-            />
+            /> */}
 
             {/* Full-page grid — fixed, spans entire viewport across all sections */}
             <div className="fixed inset-0 hidden md:grid grid-cols-58 gap-0 pointer-events-none z-0">
