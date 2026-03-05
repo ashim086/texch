@@ -28,12 +28,12 @@ app.get("/", (req, res) => {
     res.json({ message: `Server running with ENV ${process.env.NODE_ENV}` });
 });
 
-// Routes
-app.use("/auth", authRoutes);
-app.use("/users", userRoutes);
-app.use("/bookings", bookingRoutes);
-app.use("/dashboard", dashboardRoutes);
-app.use("/services", serviceRoutes);
+// API v1 Routes
+app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/bookings", bookingRoutes);
+app.use("/api/v1/dashboard", dashboardRoutes);
+app.use("/api/v1/services", serviceRoutes);
 
 // Start server
 app.listen(PORT, async () => {

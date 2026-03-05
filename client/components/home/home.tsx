@@ -110,7 +110,7 @@ export default function DashboardHome() {
                 })}
             </div>
 
-            
+
             {/* Mobile grid */}
             <div className="fixed inset-0 grid grid-cols-16 gap-0 md:hidden pointer-events-none z-0">
                 {Array.from({ length: 550 }).map((_, idx) => (

@@ -8,7 +8,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 export default function GoogleLoginButton() {
     const handleGoogleLogin = () => {
         // Redirect to backend Google OAuth endpoint
-        window.location.href = `${API_URL}/auth/google`;
+        window.location.href = `${API_URL}/api/v1/auth/google`;
     };
 
     return (
