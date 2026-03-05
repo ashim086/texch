@@ -58,17 +58,20 @@ export const register = asyncHandler(async (req, res, next) => {
     });
 
     // Set cookies
-    res.cookie("accessToken", accessToken, {
+    const isProduction = process.env.NODE_ENV === "production";
+    const cookieOptions = {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
+        secure: isProduction,
+        sameSite: isProduction ? "none" as const : "lax" as const,
+    };
+
+    res.cookie("accessToken", accessToken, {
+        ...cookieOptions,
         maxAge: 15 * 60 * 1000 // 15 minutes
     });
 
     res.cookie("refreshToken", refreshToken, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
+        ...cookieOptions,
         maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
     });
 
@@ -126,17 +129,20 @@ export const login = asyncHandler(async (req, res, next) => {
     })
 
     // Set cookies
-    res.cookie("accessToken", accessToken, {
+    const isProduction = process.env.NODE_ENV === "production";
+    const cookieOptions = {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
+        secure: isProduction,
+        sameSite: isProduction ? "none" as const : "lax" as const,
+    };
+
+    res.cookie("accessToken", accessToken, {
+        ...cookieOptions,
         maxAge: 15 * 60 * 1000 // 15 minutes
     });
 
     res.cookie("refreshToken", refreshToken, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
+        ...cookieOptions,
         maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
     });
 
@@ -203,17 +209,20 @@ export const refresh = asyncHandler(async (req, res, next) => {
     });
 
     // Send new cookies
-    res.cookie("accessToken", newAccessToken, {
+    const isProduction = process.env.NODE_ENV === "production";
+    const cookieOptions = {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
+        secure: isProduction,
+        sameSite: isProduction ? "none" as const : "lax" as const,
+    };
+
+    res.cookie("accessToken", newAccessToken, {
+        ...cookieOptions,
         maxAge: 15 * 60 * 1000 // 15 minutes
     });
 
     res.cookie("refreshToken", newRefreshToken, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
+        ...cookieOptions,
         maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
     });
 
@@ -268,10 +277,11 @@ export const googleAuth = asyncHandler(async (req, res, next) => {
     const state = generateState();
 
     // Store state in cookie for validation later
+    const isProduction = process.env.NODE_ENV === "production";
     res.cookie("oauth_state", state, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "lax",
+        secure: isProduction,
+        sameSite: isProduction ? "none" as const : "lax" as const,
         maxAge: 10 * 60 * 1000, // 10 minutes
     });
 
@@ -373,17 +383,20 @@ export const googleCallback = async (req: any, res: any, next: any) => {
         });
 
         // Set cookies
-        res.cookie("accessToken", accessToken, {
+        const isProduction = process.env.NODE_ENV === "production";
+        const cookieOptions = {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "strict",
+            secure: isProduction,
+            sameSite: isProduction ? "none" as const : "lax" as const,
+        };
+
+        res.cookie("accessToken", accessToken, {
+            ...cookieOptions,
             maxAge: 15 * 60 * 1000 // 15 minutes
         });
 
         res.cookie("refreshToken", refreshToken, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "strict",
+            ...cookieOptions,
             maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
         });
 
